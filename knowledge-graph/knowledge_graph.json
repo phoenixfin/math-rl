@@ -1,0 +1,349 @@
+{
+  "nodes": [
+    {
+      "id": "A1",
+      "formula": "p \u2192 (q \u2192 p)",
+      "name": "Weakening",
+      "description": "Adding an irrelevant antecedent never breaks truth",
+      "node_type": "axiom",
+      "derived_from": []
+    },
+    {
+      "id": "A2",
+      "formula": "(p \u2192 (q \u2192 r)) \u2192 ((p \u2192 q) \u2192 (p \u2192 r))",
+      "name": "Frege / Distribution",
+      "description": "The key axiom that lets implication distribute over itself",
+      "node_type": "axiom",
+      "derived_from": []
+    },
+    {
+      "id": "A3",
+      "formula": "(\u00acq \u2192 \u00acp) \u2192 (p \u2192 q)",
+      "name": "Contraposition",
+      "description": "Bridge between negation and implication",
+      "node_type": "axiom",
+      "derived_from": []
+    },
+    {
+      "id": "T1",
+      "formula": "p \u2192 p",
+      "name": "Identity",
+      "description": "Every proposition implies itself",
+      "node_type": "checkpoint",
+      "derived_from": [
+        "A1",
+        "A2"
+      ]
+    },
+    {
+      "id": "T2",
+      "formula": "(p \u2192 q) \u2192 ((q \u2192 r) \u2192 (p \u2192 r))",
+      "name": "Argument Permutation",
+      "description": "Reordering of chain-of-implication arguments",
+      "node_type": "theorem",
+      "derived_from": [
+        "A1",
+        "A2"
+      ]
+    },
+    {
+      "id": "T3",
+      "formula": "(q \u2192 r) \u2192 ((p \u2192 q) \u2192 (p \u2192 r))",
+      "name": "Hypothetical Syllogism",
+      "description": "If q\u2192r and p\u2192q then p\u2192r  (chaining implications)",
+      "node_type": "checkpoint",
+      "derived_from": [
+        "A2",
+        "T2"
+      ]
+    },
+    {
+      "id": "T4",
+      "formula": "\u00ac\u00acp \u2192 p",
+      "name": "Double Negation Elimination",
+      "description": "Removing double negation \u2014 classical (not intuitionistic)",
+      "node_type": "checkpoint",
+      "derived_from": [
+        "A3",
+        "T1"
+      ]
+    },
+    {
+      "id": "T5",
+      "formula": "p \u2192 \u00ac\u00acp",
+      "name": "Double Negation Introduction",
+      "description": "Any proposition can be double-negated",
+      "node_type": "theorem",
+      "derived_from": [
+        "A3",
+        "T4"
+      ]
+    },
+    {
+      "id": "T6",
+      "formula": "(p \u2192 q) \u2192 (\u00acq \u2192 \u00acp)",
+      "name": "Modus Tollens / Contrapositive",
+      "description": "If p\u2192q then its contrapositive \u00acq\u2192\u00acp holds",
+      "node_type": "checkpoint",
+      "derived_from": [
+        "A3",
+        "T3",
+        "T4"
+      ]
+    },
+    {
+      "id": "T7",
+      "formula": "\u00acp \u2192 (p \u2192 q)",
+      "name": "Ex Falso Quodlibet",
+      "description": "From a contradiction, anything follows",
+      "node_type": "checkpoint",
+      "derived_from": [
+        "A1",
+        "A3",
+        "T4"
+      ]
+    },
+    {
+      "id": "T8",
+      "formula": "p \u2228 \u00acp",
+      "name": "Law of Excluded Middle",
+      "description": "Every proposition is either true or false \u2014 the hallmark of classical logic",
+      "node_type": "checkpoint",
+      "derived_from": [
+        "A3",
+        "T4",
+        "T7"
+      ]
+    },
+    {
+      "id": "T9",
+      "formula": "\u00ac(p \u2227 \u00acp)",
+      "name": "Law of Non-Contradiction",
+      "description": "No proposition can be both true and false",
+      "node_type": "checkpoint",
+      "derived_from": [
+        "T6",
+        "T1"
+      ]
+    },
+    {
+      "id": "T10",
+      "formula": "((p \u2192 q) \u2227 (p \u2192 \u00acq)) \u2192 \u00acp",
+      "name": "Reductio ad Absurdum",
+      "description": "If p leads to contradiction, p must be false",
+      "node_type": "checkpoint",
+      "derived_from": [
+        "A2",
+        "T6"
+      ]
+    },
+    {
+      "id": "T11",
+      "formula": "(p \u2227 q) \u2192 p",
+      "name": "Conjunction Elimination (\u2227-E left)",
+      "description": "From a conjunction, extract the left component",
+      "node_type": "theorem",
+      "derived_from": [
+        "A1",
+        "T3"
+      ]
+    },
+    {
+      "id": "T12",
+      "formula": "(p \u2192 (q \u2192 r)) \u2194 ((p \u2227 q) \u2192 r)",
+      "name": "Currying / Exportation",
+      "description": "Translates between curried and uncurried form \u2014 fundamental to lambda calculus",
+      "node_type": "checkpoint",
+      "derived_from": [
+        "A1",
+        "A2",
+        "T3",
+        "T11"
+      ]
+    },
+    {
+      "id": "T13",
+      "formula": "\u00ac(p \u2228 q) \u2194 (\u00acp \u2227 \u00acq)",
+      "name": "De Morgan's Law I",
+      "description": "Negation distributes over disjunction",
+      "node_type": "checkpoint",
+      "derived_from": [
+        "T6",
+        "T8",
+        "T9"
+      ]
+    },
+    {
+      "id": "T14",
+      "formula": "\u00ac(p \u2227 q) \u2194 (\u00acp \u2228 \u00acq)",
+      "name": "De Morgan's Law II",
+      "description": "Negation distributes over conjunction",
+      "node_type": "checkpoint",
+      "derived_from": [
+        "T6",
+        "T8",
+        "T13"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "A1",
+      "to": "T1"
+    },
+    {
+      "from": "A1",
+      "to": "T2"
+    },
+    {
+      "from": "A1",
+      "to": "T7"
+    },
+    {
+      "from": "A1",
+      "to": "T11"
+    },
+    {
+      "from": "A1",
+      "to": "T12"
+    },
+    {
+      "from": "A2",
+      "to": "T1"
+    },
+    {
+      "from": "A2",
+      "to": "T2"
+    },
+    {
+      "from": "A2",
+      "to": "T3"
+    },
+    {
+      "from": "A2",
+      "to": "T10"
+    },
+    {
+      "from": "A2",
+      "to": "T12"
+    },
+    {
+      "from": "A3",
+      "to": "T4"
+    },
+    {
+      "from": "A3",
+      "to": "T5"
+    },
+    {
+      "from": "A3",
+      "to": "T6"
+    },
+    {
+      "from": "A3",
+      "to": "T7"
+    },
+    {
+      "from": "A3",
+      "to": "T8"
+    },
+    {
+      "from": "T1",
+      "to": "T4"
+    },
+    {
+      "from": "T1",
+      "to": "T9"
+    },
+    {
+      "from": "T2",
+      "to": "T3"
+    },
+    {
+      "from": "T3",
+      "to": "T6"
+    },
+    {
+      "from": "T3",
+      "to": "T11"
+    },
+    {
+      "from": "T3",
+      "to": "T12"
+    },
+    {
+      "from": "T4",
+      "to": "T5"
+    },
+    {
+      "from": "T4",
+      "to": "T6"
+    },
+    {
+      "from": "T4",
+      "to": "T7"
+    },
+    {
+      "from": "T4",
+      "to": "T8"
+    },
+    {
+      "from": "T6",
+      "to": "T9"
+    },
+    {
+      "from": "T6",
+      "to": "T10"
+    },
+    {
+      "from": "T6",
+      "to": "T13"
+    },
+    {
+      "from": "T6",
+      "to": "T14"
+    },
+    {
+      "from": "T7",
+      "to": "T8"
+    },
+    {
+      "from": "T8",
+      "to": "T13"
+    },
+    {
+      "from": "T8",
+      "to": "T14"
+    },
+    {
+      "from": "T9",
+      "to": "T13"
+    },
+    {
+      "from": "T11",
+      "to": "T12"
+    },
+    {
+      "from": "T13",
+      "to": "T14"
+    }
+  ],
+  "checkpoints": [
+    "T1",
+    "T3",
+    "T4",
+    "T6",
+    "T7",
+    "T8",
+    "T9",
+    "T10",
+    "T12",
+    "T13",
+    "T14"
+  ],
+  "axioms": [
+    "A1",
+    "A2",
+    "A3"
+  ]
+}
