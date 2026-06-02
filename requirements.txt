@@ -1,7 +1,2 @@
 streamlit>=1.32.0
-tensorflow>=2.15.0
-gymnasium>=0.29.0
-networkx>=3.2
-matplotlib>=3.8
-numpy>=1.26
 pandas>=2.1
